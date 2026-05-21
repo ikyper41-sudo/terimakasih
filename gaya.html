@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Our First Monthsary</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url('bg.scrapbook.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Kalam', cursive;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 10px;
+        }
+        .journal-container {
+            background-color: #fffdf0;
+            width: 100%;
+            max-width: 500px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            padding: 25px;
+            position: relative;
+        }
+        .sketch-title { font-family: 'Fredoka One', cursive; font-size: 1.8rem; color: #555; text-align: center; margin-bottom: 20px; }
+        .avatar-img { width: 90px; height: 90px; border-radius: 50%; border: 3px solid #fff; display: block; margin: 0 auto 10px; }
+        .speech-bubble { background: #ffffff; border: 2px solid #b2bec3; border-radius: 15px; padding: 12px; text-align: center; font-size: 1rem; color: #6c5ce7; margin-bottom: 20px; text-transform: uppercase; }
+        .love-letter { font-size: 1.2rem; line-height: 1.6; color: #2d3436; text-align: justify; }
+        .highlight { border-bottom: 3px solid #ff7675; font-weight: bold; }
+        .journal-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 25px; }
+        .flower-img { width: 80px; cursor: pointer; transition: transform 0.2s; }
+        
+        /* Animasi Bunga Terbang */
+        .floating-flower { position: fixed; font-size: 2rem; pointer-events: none; z-index: 9999; animation: flyUp 2s ease-out forwards; }
+        @keyframes flyUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-300px) scale(1.5); opacity: 0; } }
+        
+        .music-btn { position: fixed; bottom: 20px; right: 20px; background: #ff7675; color: white; border: none; padding: 12px 20px; border-radius: 25px; font-family: 'Kalam', cursive; z-index: 1000; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+
+    <div class="journal-container">
+        <h1 class="sketch-title">our first monthsarry!</h1>
+        <img src="vana.jpg" alt="Vana" class="avatar-img">
+        <div class="speech-bubble">
+            <p>hell♡ MR. AIKI, happy 1ST m♡nthsarry sayang &lt;3</p>
+        </div>
+        <article class="love-letter">
+            <p>haloo ngga nyangka ya ini adalah tanggal 21 pertama kita, setelah hari itu rasa sayangku ke vana bertambah sampai detik ini. kita udah lewatin 30 hari bersama sama, aiki tau itu terhitung baru sebentar tapi sebentar sama vana itu buat aiki berharga. hari hari penuh afeksi yang dijalani kita berdua, sudah sampai detik ini aiki sudah merasa cukup bahagia. wkwk aiki selalu merasa hangat setiap hariku selalu dapat chat dari pacarku ini, sayang semoga hubungan kita dapat terus seperti ini dan perasaan kita ga akan pernah berubah, aiki pengen terus lama bareng bareng sama vana lewatin semuanya gimana dunia bekerja, entah keadaan baik maupun buruk, aiki pengen selalu ada dan support vana dalam segala hal.</p>
+            <br>
+            <p>banyak hal yang mau aiki bicarain, sekali lagi selamat untuk kita hehe makasih udah selama ini bareng aiki, lewatin semuanya bareng bareng sama aiki, aiki <span class="highlight">seneng banget bisa dicintai dengan tulus sama vana</span>, aiki merasa cowo terberuntung di dunia soalnya bisa punya pacar sekeren dan sehebat vana.</p>
+            <br>
+            <p>Oh iya sayang, <span class="highlight">terima kasih banyak ya untuk semuanya</span>. Terima kasih sudah sesabar itu menghadapi aku, mendengarkan ceritaku, dan selalu ada buat aku. Dan... <span class="highlight">aku juga mau minta maaf banget untuk hari ini</span> kalau ada sikap atau kataku yang sempat bikin kamu kesal atau kurang nyaman. Aku harap kita bisa terus saling mengerti ya. ilysm Hosea, happy mensive!</p>
+        </article>
+        <footer class="journal-footer">
+            <p>from vana ❤️</p>
+            <img src="tulip.png" alt="Bunga" class="flower-img" id="flowerBtn">
+        </footer>
+    </div>
+
+    <button class="music-btn" id="musicBtn">🎵 Play Music</button>
+    <audio id="bgMusic" loop><source src="lagu2.mp3" type="audio/mpeg"></audio>
+
+    <script>
+        const audio = document.getElementById('bgMusic');
+        const btn = document.getElementById('musicBtn');
+        const flower = document.getElementById('flowerBtn');
+
+        // Animasi Bunga
+        flower.addEventListener('click', (e) => {
+            const rect = flower.getBoundingClientRect();
+            for (let i = 0; i < 6; i++) {
+                const f = document.createElement('div');
+                f.innerText = '🌸';
+                f.className = 'floating-flower';
+                f.style.left = (rect.left + Math.random() * 40) + 'px';
+                f.style.top = (rect.top) + 'px';
+                document.body.appendChild(f);
+                setTimeout(() => f.remove(), 2000);
+            }
+        });
+
+        // Musik Toggle
+        btn.addEventListener('click', () => {
+            if (audio.paused) { 
+                audio.play().catch(e => console.log(e)); 
+                btn.innerText = '⏸ Pause Music'; 
+            } else { 
+                audio.pause(); 
+                btn.innerText = '🎵 Play Music'; 
+            }
+        });
+    </script>
+</body>
+</html>
